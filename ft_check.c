@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:26:40 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/22 17:10:48 by anhuang          ###   ########.fr       */
+/*   Updated: 2017/11/22 17:44:21 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void		ft_checkchar(char *c, int *i, char *t_count, char *hashs)
 			return ;
 		if ((*i - *t_count + 1) % 5 == 0)
 		{
-			if (c[i] != '\n')
+			if (c[*i] != '\n')
 				return ;
-			else if (((c[i + 1] == '\n' && (i + 2) % 21 == 0)) || !c[i + 1])
+			else if (((c[*i + 1] == '\n' && (*i + 2) % 21 == 0)) || !c[*i + 1])
 			{
 				if (*hashs != 4)
 					return ;
@@ -33,12 +33,11 @@ static void		ft_checkchar(char *c, int *i, char *t_count, char *hashs)
 		}
 		else
 		{
-			if (c[i] != '.' && c[i] != '#')
+			if (c[*i] != '.' && c[*i] != '#')
 				return ;
-			else if (c[i] == '#')
+			else if (c[*i] == '#')
 				hashs++;
 		}
-		i++;
 }
 
 int				ft_check(char *c)
@@ -59,6 +58,8 @@ int				ft_check(char *c)
 	hashs = 0;
 	while (c[i])
 	{
+		ft_checkchar(c, &i, &t_count, &hashs);
+		i++;
 	}
 	return (1);
 }
