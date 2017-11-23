@@ -6,13 +6,11 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:26:40 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/22 17:44:21 by anhuang          ###   ########.fr       */
+/*   Updated: 2017/11/23 10:02:22 by kdouveno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check.h"
-#include <stdio.h>
-#include <string.h>
 
 static void		ft_checkchar(char *c, int *i, char *t_count, char *hashs)
 {
@@ -49,10 +47,7 @@ int				ft_check(char *c)
 
 	len = ft_strlen(c);
 	if ((len + 1) % 21 != 0)
-	{
-		puts("wrong number of chars");
 		return (0);
-	}
 	i = 0;
 	t_count = 0;
 	hashs = 0;
