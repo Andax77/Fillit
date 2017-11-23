@@ -39,7 +39,7 @@ re: fclean
 	@make
 
 o:
-	gcc -c $(SRCS)
+	@gcc -c $(SRCS)
 
 line:
 	@echo "$(MAGENTA)---------------------------------$(WHITE)"
