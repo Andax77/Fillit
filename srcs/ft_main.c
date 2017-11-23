@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 12:23:05 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/23 15:18:19 by anhuang          ###   ########.fr       */
+/*   Updated: 2017/11/23 15:35:52 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_fillit(int argc, char **argv)
 	if (ft_check(buf))
 		return (1);
 	ft_parse(buf);
-	printf("tout va bien");
+	printf("\ntout va bien\n");
 	return (0);
 }
 
