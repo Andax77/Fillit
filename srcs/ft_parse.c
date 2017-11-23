@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.h                                            :+:      :+:    :+:   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 11:35:22 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/22 13:53:59 by anhuang          ###   ########.fr       */
+/*   Created: 2017/11/23 15:14:17 by anhuang           #+#    #+#             */
+/*   Updated: 2017/11/23 15:23:18 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECK_H
-# define CHECK_H
-# define TCHAR(c) (c == '.' || c == '#' ? 1 : 0);
-# include "libft.h"
-int		ft_check(char *c);
+#include "../hds/main.h"
 
+t_t		*ft_parse(char *s)
+{
+	int		t_count;
 
-#endif
+	t_count = (ft_strlen(s) + 1) / 21;
+	printf("%d", t_count);
+	return NULL;
+}

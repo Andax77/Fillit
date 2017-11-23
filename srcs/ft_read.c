@@ -6,11 +6,11 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:20:54 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/23 10:11:11 by kdouveno         ###   ########.fr       */
+/*   Updated: 2017/11/23 15:28:16 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hds/read.h"
+#include "../hds/main.h"
 
 int				ft_opfiro(char *path)
 {

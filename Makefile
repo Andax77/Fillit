@@ -1,8 +1,9 @@
-NAME = Fillit
+NAME = fillit
 
 SRCFILES = ft_check.c\
     ft_read.c\
-    main.c\
+    ft_main.c\
+	ft_parse.c
 
 SRCDIR = srcs/
 HDDIR = hds/
@@ -58,7 +59,7 @@ test:
 	@make line
 
 gene:
-	@sh gene.sh 10
+	@sh gene.sh 1
 
 cat:
 	@make line
