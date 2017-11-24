@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 15:14:17 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/23 17:37:29 by anhuang          ###   ########.fr       */
+/*   Updated: 2017/11/24 11:49:37 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ t_t		ft_parseone(char *s)
 
 	i = 0;
 	out.map = 0;
-	while (i < 21 && i[s])
+	while (i < 21 && s[i])
 	{
 		if (s[i] == '#')
 			out.map = out.map | 1 << (i - (i + 1) / 5);
 		i++;
 	}
-	while (((out.map & 4369 ) ^ 4369) == 4369)
+	while (((out.map & 4369) ^ 4369) == 4369)
 		out.map = out.map >> 1;
 	while (((out.map & 15) ^ 15) == 15)
 		out.map = out.map >> 4;
-	return out;
+	return (out);
 }
 
 t_t		*ft_parse(char *s)
