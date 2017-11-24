@@ -32,12 +32,27 @@ $(NAME): o
 	@make line
 clean:
 	@rm -rf $(OBJS)
+	@echo "$(GREEN)[----------------]"
+	@echo "$(GREEN)[  Successfully  ]"
+	@echo "$(GREEN)[    All *.o     ]"
+	@echo "$(GREEN)[has been Cleaned]"
+	@echo "$(GREEN)[----------------]"
 
 fclean: clean
 	@rm -rf $(NAME)
+	@echo "$(GREEN)[----------------]"
+	@echo "$(GREEN)[  Successfully  ]"
+	@echo "$(GREEN)[    libft.a     ]"
+	@echo "$(GREEN)[has been Cleaned]"
+	@echo "$(GREEN)[----------------]"
 
 re: fclean
 	@make
+	@echo "$(GREEN)[----------------]"
+	@echo "$(PINK)[  Successfully  ]"
+	@echo "$(PINK)[     Remake     ]"
+	@echo "$(PINK)[     Again !    ]"
+	@echo "$(GREEN)[----------------]"
 
 o:
 	@gcc -c $(SRCS)
@@ -59,7 +74,7 @@ test:
 	@make line
 
 gene:
-	@sh gene.sh 5
+	@sh gene.sh 26
 
 cat:
 	@make line
@@ -67,3 +82,10 @@ cat:
 	@make line
 	@sh replace.sh
 	@make line
+
+error:
+	@echo "$(RED)[----------------]"
+	@echo "$(RED)[     Nothing    ]"
+	@echo "$(RED)[       is       ]"
+	@echo "$(RED)[     ERROR !    ]"
+	@echo "$(RED)[----------------]"
