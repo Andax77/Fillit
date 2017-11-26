@@ -21,6 +21,26 @@ void	ft_prtabt(t_t *tab)
 	}
 }
 
+void	ft_find_dims(t_t *out)
+{
+	int i;
+	unsigned short mask;
+
+	mask = 240;
+	i = 1;
+	while ((out->map ^ mask) != mask)
+	{
+		mask << 4;
+		i++;
+	}
+	out->dy = i;
+	if (i == 2 && ((out->map ^ 68) == 68))
+		out->dx = i;
+	else
+		out->dx = 5 - i;
+	printf("l: %c; x: %d; y: %d; dx: %d; dy: %d\n", out->letter, out->x; out->y, out->dx, out->dy);  
+}
+
 t_t		ft_parseone(char *s)
 {
 	t_t		out;
@@ -38,6 +58,9 @@ t_t		ft_parseone(char *s)
 		out.map = out.map >> 1;
 	while (((out.map & 15) ^ 15) == 15)
 		out.map = out.map >> 4;
+	out.x = 0;
+	out.y = 0;
+	ft_find_dims(&out);
 	return (out);
 }
 

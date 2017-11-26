@@ -14,10 +14,10 @@
 
 int		ft_fillit(int argc, char **argv)
 {
-	char	*buf;
+	char	buf[] = "....\n###.\n..#.\n....\n\n.#..\n.###\n....\n....\n\n....\n....\n###.\n.#..\n\n....\n....\n###.\n.#..\n\n....\n..#.\n.##.\n..#.\n";
 
-	if (!(buf = ft_fibuf(argv[1], ft_filesize(ft_opfiro(argv[1])))))
-		return (1);
+	/*if (!(buf = ft_fibuf(argv[1], ft_filesize(ft_opfiro(argv[1])))))
+		return (1);*/
 	if (ft_check(buf))
 		return (1);
 	ft_parse(buf);

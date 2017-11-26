@@ -12,7 +12,7 @@
 
 #include "../hds/main.h"
 
-int		ft_state_bit(int map, int pos)
+int		ft_state_bit(unsigned short map, unsigned char pos)
 {
 	return ((map >> pos) & 1);
 }
