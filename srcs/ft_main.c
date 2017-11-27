@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 12:23:05 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/23 15:35:52 by anhuang          ###   ########.fr       */
+/*   Updated: 2017/11/27 16:09:03 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		ft_putstr_fd("usage: ./fillit target_map_file", 2);
+		ft_putstr_fd("usage: fillit input_file\n", 2);
 		return (0);
 	}
 	if (ft_fillit(argc, argv))
