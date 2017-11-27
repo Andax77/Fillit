@@ -51,10 +51,6 @@ void	ft_shifty(unsigned short *target, int y)
 
 int		ft_collapse(t_t t1, t_t t2, int	x, int y)
 {
-	printf("avant:\n  t1\n");
-	ft_pr_sh(t1.map);
-	printf("  t2\n");
-	ft_pr_sh(t2.map);
 	if (y < 0)
 		ft_shifty(&(t1.map), -y);
 	else
@@ -63,10 +59,6 @@ int		ft_collapse(t_t t1, t_t t2, int	x, int y)
 		ft_shiftx(&(t1.map), -x);
 	else
 		ft_shiftx(&(t2.map), x);
-	printf("apres:\n  t1\n");
-	ft_pr_sh(t1.map);
-	printf("  t2\n");
-	ft_pr_sh(t2.map);
 	if ((t1.map ^ t2.map) != (t1.map | t2.map))
 		return (1);
 	return (0);
@@ -79,22 +71,24 @@ int		ft_isvalid(t_t *tetros)
 	int		dify;
 
 	tmp = tetros;
-	while (tetros->letter != 'A')
+	tetros--;
+	while ((tetros + 1)->letter != 'A')
 	{
-		tetros--;
 		difx = tmp->x - tetros->x;
 		dify = tmp->y - tetros->y;
+		printf("prout: l: %c\n", tetros->letter);
 		if ((!difx && !dify) || (difx >= 4 && dify >= 4))
 			return (0);
 		if (ft_collapse(*tmp, *tetros, difx, dify))
 			return (0);
+		tetros--;
 	}
 	return (1);
 }
 
-void	ft_copy_result(t_t *tetros, *t_t out)
+void	ft_copy_result(t_t *tetros, t_t *out)
 {
-	while (tetros-> != 'A')
+	while ((tetros + 1)->letter != 'A')
 	{
 		*out = *tetros;
 		tetros--;
@@ -102,27 +96,55 @@ void	ft_copy_result(t_t *tetros, *t_t out)
 	}
 }
 
-void	*ft_resolve(t_t *tetros, int x, int y, t_t *out)
+int		ft_find_size(t_t *tetros)
 {
-	if (!tetros->map)
+	int i;
+
+	i = 0;
+	while ((tetros + 1)->letter != 'A')
 	{
-		if (tetros->x > (tetros->y = ft_find_size(tetros)))
-		{
-			tetros->x = tetros->y;
-			ft_copy_result(tetros, out);
-		}
+		if (tetros->x + tetros->dx > i)
+			i = tetros->x + tetros->dx;
+		if (tetros->y + tetros->dy > i)
+			i = tetros->y + tetros->dy;
+		tetros--;
 	}
-	if (ft_isvalid(tetros))
-	{
-		ft_resolve(tetros + 1; 0, y + 1, out);
-	}
-	else
-	{
-		ft_resolve(tetros; x + 1, y, out);
-	}
+	return i;
 }
 
-int main(int argc, char const *argv[])
+int		ft_resolve(t_t *tetros, t_t *out, unsigned char size)
+{
+	if (tetros->map == 0)
+	{
+		ft_copy_result(tetros, out);
+		return (1);
+	}
+	tetros->x = 0;
+	tetros->y = 0;
+	while (tetros->y + tetros->dy <= size)
+	{
+		printf("map: %d, l: %d, x: %d, y: %d, dx: %d, dy: %d, size: %d\n", tetros->map, tetros->letter, tetros->x, tetros->y, tetros->dx, tetros->dy, size);
+		if (tetros->x + tetros->dx > size)
+		{
+			tetros->x = 0;
+			tetros->y++;
+			continue ;
+		}
+		printf("%d\n", ft_isvalid(tetros));
+		if (size == 4 && tetros->letter == 'B' && tetros->x == 2)
+			return (1);
+		if (ft_isvalid(tetros))
+		{
+			ft_resolve(tetros + 1, out, size);
+			tetros->x++;
+		}
+
+		tetros->x++;
+	}
+	return (0);
+}
+
+/*int main(int argc, char const *argv[])
 {
 	t_t t1;
 	t_t t2;
@@ -133,6 +155,6 @@ int main(int argc, char const *argv[])
 	t2.x = 0;
 	t1.y = 0;
 	t2.y = 2;
-	printf("%d\n", ft_spaced(t1, t2, t2.x - t1.x, t2.y - t1.y));
+	printf("%d\n", ft_collapse(t1, t2, t2.x - t1.x, t2.y - t1.y));
 	return 0;
-}
+}*/

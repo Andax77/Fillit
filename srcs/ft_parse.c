@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 15:14:17 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/24 11:49:37 by anhuang          ###   ########.fr       */
+/*   Updated: 2017/11/27 18:59:14 by kdouveno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,16 @@ void	ft_find_dims(t_t *out)
 
 	mask = 240;
 	i = 1;
-	while ((out->map ^ mask) != mask)
+	while ((out->map & mask) != 0)
 	{
-		mask << 4;
+		mask <<= 4;
 		i++;
 	}
 	out->dy = i;
-	if (i == 2 && ((out->map ^ 68) == 68))
+	if (i == 2 && ((out->map & 68) == 0))
 		out->dx = i;
 	else
 		out->dx = 5 - i;
-	printf("l: %c; x: %d; y: %d; dx: %d; dy: %d\n", out->letter, out->x; out->y, out->dx, out->dy);  
 }
 
 t_t		ft_parseone(char *s)
@@ -77,9 +76,9 @@ t_t		*ft_parse(char *s)
 	while (i < t_count)
 	{
 		out[i] = ft_parseone(s + i * 21);
+		out[i].letter = i + 65;
 		i++;
 	}
 	out[i].map = 0;
-	ft_prtabt(out);
 	return (out);
 }

@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_state_bit.c                                     :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kdouveno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 15:30:28 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/27 18:33:52 by kdouveno         ###   ########.fr       */
+/*   Created: 2017/11/07 15:11:14 by kdouveno          #+#    #+#             */
+/*   Updated: 2017/11/27 20:42:58 by kdouveno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hds/main.h"
-
-int		ft_state_bit(unsigned short map, unsigned char pos)
+int		ft_sqrt(int nb)
 {
-	return ((map >> pos) & 1);
+	int a;
+	int b;
+	int i;
+
+	a = 0;
+	b = nb / 2;
+	i = nb / 4;
+	while (nb != i * i)
+	{
+		if (b - a <= 1)
+			return (a);
+		if (nb > i * i && i <= 46340)
+			a = i;
+		else
+			b = i;
+		i = (a + b) / 2;
+	}
+	return (i);
 }

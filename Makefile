@@ -1,9 +1,13 @@
 NAME = fillit
 
 SRCFILES = ft_check.c\
-    ft_read.c\
+    ft_count_link.c\
     ft_main.c\
-	ft_parse.c
+    ft_parse.c\
+    ft_read.c\
+    ft_resolve.c\
+    ft_state_bit.c\
+    ft_validate.c
 
 SRCDIR = srcs/
 HDDIR = hds/
@@ -33,26 +37,26 @@ $(NAME): o
 clean:
 	@rm -rf $(OBJS)
 	@echo "$(GREEN)[----------------]"
-	@echo "$(GREEN)[  Successfully  ]"
-	@echo "$(GREEN)[    All *.o     ]"
-	@echo "$(GREEN)[has been Cleaned]"
-	@echo "$(GREEN)[----------------]"
+	@echo "[$(YELLOW)     all .o     $(GREEN)]"
+	@echo "[$(YELLOW)    has been    $(GREEN)]"
+	@echo "[$(YELLOW)    Cleaned     $(GREEN)]"
+	@echo "[----------------]$(WHITE)"
 
 fclean: clean
 	@rm -rf $(NAME)
 	@echo "$(GREEN)[----------------]"
-	@echo "$(GREEN)[  Successfully  ]"
-	@echo "$(GREEN)[    libft.a     ]"
-	@echo "$(GREEN)[has been Cleaned]"
-	@echo "$(GREEN)[----------------]"
+	@echo "[$(YELLOW)  Successfully  $(GREEN)]"
+	@echo "[$(YELLOW)    cleared     $(GREEN)]"
+	@echo "[$(YELLOW)   executable   $(GREEN)]"
+	@echo "[----------------]$(WHITE)"
 
 re: fclean
 	@make
 	@echo "$(GREEN)[----------------]"
-	@echo "$(PINK)[  Successfully  ]"
-	@echo "$(PINK)[     Remake     ]"
-	@echo "$(PINK)[     Again !    ]"
-	@echo "$(GREEN)[----------------]"
+	@echo "[$(YELLOW)     Remake     $(GREEN)]"
+	@echo "[$(YELLOW)      made      $(GREEN)]"
+	@echo "[$(YELLOW)  Successfully  $(GREEN)]"
+	@echo "$(GREEN)[----------------]$(WHITE)"
 
 o:
 	@gcc -c $(SRCS)
@@ -74,7 +78,7 @@ test:
 	@make line
 
 gene:
-	@sh gene.sh 26
+	@sh gene.sh 2
 
 cat:
 	@make line
@@ -85,7 +89,7 @@ cat:
 
 error:
 	@echo "$(RED)[----------------]"
-	@echo "$(RED)[     Nothing    ]"
-	@echo "$(RED)[       is       ]"
-	@echo "$(RED)[     ERROR !    ]"
+	@echo "$(RED)[   ! There !    ]"
+	@echo "$(RED)[   ! is no !    ]"
+	@echo "$(RED)[   ! ERROR !    ]"
 	@echo "$(RED)[----------------]"
