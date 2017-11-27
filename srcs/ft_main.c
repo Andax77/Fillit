@@ -6,7 +6,11 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 12:23:05 by anhuang           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/11/27 20:27:56 by kdouveno         ###   ########.fr       */
+=======
+/*   Updated: 2017/11/27 16:09:03 by anhuang          ###   ########.fr       */
+>>>>>>> 32656796d288f0bb7ce746883198e1f8d4863afe
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +58,7 @@ int		main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		ft_putstr_fd("usage: ./fillit target_map_file", 2);
+		ft_putstr_fd("usage: fillit input_file\n", 2);
 		return (0);
 	}
 	if (ft_fillit(argc, argv))
