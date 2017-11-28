@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:22:46 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/28 11:58:47 by anhuang          ###   ########.fr       */
+/*   Updated: 2017/11/28 17:23:25 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char			*ft_display(t_t *input)
 	int		x;
 
 	i = 0;
-	if (!(out = (char*)malloc((input->x * input->x + input->x) + 1)))
+	if (!(out = (char*)malloc((input->x * input->x + input->x))))
 		return (NULL);
 	ft_memset(out, '.', input->x * input->x + input->x);
 	while (i != (input->x * input->x + input->x))
@@ -64,8 +64,7 @@ char			*ft_display(t_t *input)
 			out[i] = '\n';
 		i++;
 	}
-	out[i] = '\n';
-	ft_putstr(out);
+	out[i] = '\0';
 	x = input->x + 1;
 	while (input->letter != 'A')
 	{
@@ -75,66 +74,66 @@ char			*ft_display(t_t *input)
 	ft_putstr(out);
 	return (out);
 }
-/*
+
 int main ()
 {
 	t_t toto[9];
 
-	toto[0].map = 4369;
+	toto[0].map = 99;
 	toto[0].x = 0;
 	toto[0].y = 0;
-	toto[0].dx = 1;
-	toto[0].dy = 4;
+	toto[0].dx = 3;
+	toto[0].dy = 2;
 	toto[0].letter = 'A';
 
-	toto[1].map = 15;
-	toto[1].x = 1;
+	toto[1].map = 99;
+	toto[1].x = 2;
 	toto[1].y = 0;
-	toto[1].dx = 4;
-	toto[1].dy = 1;
+	toto[1].dx = 3;
+	toto[1].dy = 2;
 	toto[1].letter = 'B';
 
-	toto[2].map = 71;
-	toto[2].x = 1;
-	toto[2].y = 1;
-	toto[2].dx = 3;
-	toto[2].dy = 2;
+	toto[2].map = 15;
+	toto[2].x = 0;
+	toto[2].y = 2;
+	toto[2].dx = 4;
+	toto[2].dy = 1;
 	toto[2].letter = 'C';
 
-	toto[3].map = 54;
-	toto[3].x = 2;
-	toto[3].y = 4;
-	toto[3].dx = 3;
-	toto[3].dy = 2;
+	toto[3].map = 547;
+	toto[3].x = 4;
+	toto[3].y = 0;
+	toto[3].dx = 2;
+	toto[3].dy = 3;
 	toto[3].letter = 'D';
 
-	toto[4].map = 51;
-	toto[4].x = 4;
-	toto[4].y = 1;
-	toto[4].dx = 2;
+	toto[4].map = 113;
+	toto[4].x = 0;
+	toto[4].y = 4;
+	toto[4].dx = 3;
 	toto[4].dy = 2;
 	toto[4].letter = 'E';
 
-	toto[5].map = 99;
+	toto[5].map = 51;
 	toto[5].x = 1;
-	toto[5].y = 2;
-	toto[5].dx = 3;
+	toto[5].y = 3;
+	toto[5].dx = 2;
 	toto[5].dy = 2;
 	toto[5].letter = 'F';
 
-	toto[6].map = 547;
+	toto[6].map = 4369;
 	toto[6].x = 4;
-	toto[6].y = 3;
-	toto[6].dx = 2;
-	toto[6].dy = 3;
+	toto[6].y = 2;
+	toto[6].dx = 1;
+	toto[6].dy = 4;
 	toto[6].letter = 'G';
 
-	toto[7].map = 39;
-	toto[7].x = 0;
-	toto[7].y = 4;
-	toto[7].dx = 3;
-	toto[7].dy = 2;
-	toto[7].letter = 'H';
+	toto[7].map = 0;
+	toto[7].x = 6;
+	toto[7].y = 0;
+	toto[7].dx = 0;
+	toto[7].dy = 0;
+	toto[7].letter = 0;
 
 	toto[8].map = 0;
 	toto[8].x = 6;
@@ -144,6 +143,6 @@ int main ()
 	toto[8].letter = 0;
 
 
-	ft_display(toto + 8);
+	ft_display(toto + 7);
 	return(0);
-}*/
+}
