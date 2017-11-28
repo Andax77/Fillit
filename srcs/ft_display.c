@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:22:46 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/27 21:23:45 by anhuang          ###   ########.fr       */
+/*   Updated: 2017/11/28 11:58:47 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,21 @@ char			*ft_display_t(char *out, int x, int i, t_t *input)
 	bit = 0;
 	while (bit != 4)
 	{
-		if (out[i] == '\n')
-			i++;
+		if (i % 4 == 0 && i != 0)
+			dif += x - 4;
 		if (ft_state_bit(input->map, i) == 1)
 		{
 			out[i + input->x + input->y * x + dif] = input->letter;
-			if (ft_state_bit(input->map, i + 1) == 0)
-				dif = x - 4;
 			bit++;
 		}
-
+		if (out[i] == '\n')
+			i++;
 		i++;
 	}
 	return (out);
 }
 
-char			*ft_display(t_t* input)
+char			*ft_display(t_t *input)
 {
 	char	*out;
 	int		i;
@@ -76,7 +75,7 @@ char			*ft_display(t_t* input)
 	ft_putstr(out);
 	return (out);
 }
-
+/*
 int main ()
 {
 	t_t toto[9];
@@ -138,7 +137,7 @@ int main ()
 	toto[7].letter = 'H';
 
 	toto[8].map = 0;
-	toto[8].x = 7;
+	toto[8].x = 6;
 	toto[8].y = 0;
 	toto[8].dx = 0;
 	toto[8].dy = 0;
@@ -147,4 +146,4 @@ int main ()
 
 	ft_display(toto + 8);
 	return(0);
-}
+}*/
