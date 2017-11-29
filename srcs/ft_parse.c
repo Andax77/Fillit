@@ -6,31 +6,42 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 15:14:17 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/27 18:59:14 by kdouveno         ###   ########.fr       */
+/*   Updated: 2017/11/29 14:25:08 by kdouveno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hds/main.h"
 
-void	ft_prtabt(t_t *tab)
+char	ft_bitat(unsigned long src, unsigned char pos)
 {
-	while (tab->map)
+	return (src >> pos & 1);
+}
+
+void	ft_prtabt(unsigned long map)
+{
+	int i;
+
+	i = 0;
+	while (i < 64)
 	{
-		printf("%d\n", tab->map);
-		tab++;
+		if (i % 16 == 0)
+			ft_putchar('\n');
+		ft_putchar(ft_bitat(map, i) + 48);
+		i++;
 	}
+	ft_putchar('\n');
 }
 
 void	ft_find_dims(t_t *out)
 {
-	int i;
-	unsigned short mask;
+int i;
+	unsigned long mask;
 
-	mask = 240;
+	mask = 0xF0000;
 	i = 1;
 	while ((out->map & mask) != 0)
 	{
-		mask <<= 4;
+		mask <<= 16;
 		i++;
 	}
 	out->dy = i;
@@ -42,21 +53,26 @@ void	ft_find_dims(t_t *out)
 
 t_t		ft_parseone(char *s)
 {
-	t_t		out;
-	int		i;
+	t_t				out;
+	int				i;
+	unsigned long	mask;
 
 	i = 0;
 	out.map = 0;
 	while (i < 21 && s[i])
 	{
 		if (s[i] == '#')
-			out.map = out.map | 1 << (i - (i + 1) / 5);
+			out.map = out.map | (1LU << (((unsigned long)i + 1LU) / 5LU
+				* 16LU + (unsigned long)i % 5LU));
 		i++;
 	}
-	while (((out.map & 4369) ^ 4369) == 4369)
+	mask = 0x1000100010001;
+	printf("%lu\n", out.map);
+	ft_prtabt(out.map);
+	while (!(out.map & mask))
 		out.map = out.map >> 1;
-	while (((out.map & 15) ^ 15) == 15)
-		out.map = out.map >> 4;
+	while (!(out.map & 0xF))
+		out.map = out.map >> 16;
 	out.x = 0;
 	out.y = 0;
 	ft_find_dims(&out);
