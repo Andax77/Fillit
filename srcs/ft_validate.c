@@ -15,19 +15,19 @@
 int		ft_validate(t_t *tetros)
 {
 	int		pos;
-	int		t_link;
+	int		links;
 
 	while (tetros->map)
 	{
 		pos = 0;
-		t_link = 0;
-		while (pos != 16)
+		links = 0;
+		while (pos != 64)
 		{
-			if (ft_state_bit(tetros->map, pos) == 1)
-				t_link = t_link + ft_count_link(tetros->map, pos);
+			if (ft_bitat(tetros->map, pos) == 1)
+				links = links + ft_count_link(tetros->map, pos);
 			pos++;
 		}
-		if (t_link != 6 && t_link != 8)
+		if (links != 6 && links != 8)
 			return (1);
 		tetros++;
 	}

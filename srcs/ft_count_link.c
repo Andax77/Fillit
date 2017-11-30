@@ -12,18 +12,18 @@
 
 #include "../hds/main.h"
 
-int			ft_count_link(int map, int pos)
+char	ft_count_link(unsigned long map, int pos)
 {
 	int		link;
 
 	link = 0;
-	if (ft_state_bit(map, pos + 1) == 1)
+	if (ft_bitat(map, pos + 1) == 1)
 		link++;
-	if (ft_state_bit(map, pos - 1) == 1)
+	if (ft_bitat(map, pos - 1) == 1)
 		link++;
-	if (ft_state_bit(map, pos + 4) == 1)
+	if (ft_bitat(map, pos + 16) == 1)
 		link++;
-	if (ft_state_bit(map, pos - 4) == 1)
+	if (ft_bitat(map, pos - 16) == 1)
 		link++;
 	return (link);
 }

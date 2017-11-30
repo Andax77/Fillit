@@ -29,7 +29,6 @@ void	ft_prtabt(unsigned long map)
 		ft_putchar(ft_bitat(map, i) + 48);
 		i++;
 	}
-	ft_putchar('\n');
 }
 
 void	ft_find_dims(t_t *out)
@@ -67,8 +66,6 @@ t_t		ft_parseone(char *s)
 		i++;
 	}
 	mask = 0x1000100010001;
-	printf("%lu\n", out.map);
-	ft_prtabt(out.map);
 	while (!(out.map & mask))
 		out.map = out.map >> 1;
 	while (!(out.map & 0xF))
