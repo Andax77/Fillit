@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 12:23:05 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/29 13:56:54 by kdouveno         ###   ########.fr       */
+/*   Updated: 2017/11/30 14:14:22 by kdouveno         ###   ########.fr       */
 /*   Updated: 2017/11/27 16:09:03 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -18,7 +18,7 @@ unsigned char	ft_start_size(t_t *tetros)
 	int i;
 
 	i = 0;
-	while (tetros->map)
+	while (tetros->letter)
 	{
 		i++;
 		tetros++;
@@ -39,13 +39,11 @@ int		ft_fillit(int argc, char **argv)
 	if (ft_check(buf))
 		return (1);
 	if (!(tetros = ft_parse(buf)))
-			return (1);
-	if (!(out = ft_parse(buf)))
-			return (1);
-	if(ft_validate(tetros))
+		return (1);
+	if (ft_validate(tetros))
 		return (1);
 	size = ft_sqrt(4 * ft_start_size(tetros));
-	while(!ft_resolve(tetros, out, size))
+	while (ft_resolve(tetros, size))
 		size++;
 	printf("megafin\n");
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:02:22 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/29 14:53:42 by kdouveno         ###   ########.fr       */
+/*   Updated: 2017/11/30 14:20:09 by kdouveno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,11 @@
 # include "libft.h"
 # include <stdio.h>
 
+typedef	unsigned long t_map[4];
 typedef struct		s_t
 {
-	unsigned long		map;
+	t_map			map;
 	char			letter;
-	unsigned char	x;
-	unsigned char	y;
-	unsigned char	dx;
-	unsigned char	dy;
 }					t_t;
 
 int					ft_check(char *c);
@@ -38,12 +35,12 @@ int					ft_validate(t_t *tetros);
 t_t					ft_strtot(char *s);
 int					ft_fillit(int argc, char **argv);
 t_t					*ft_parse(char *s);
-int					*ft_place(t_t *tetros, unsigned long trymap[4],
-		unsigned size);
-int					ft_collapse(unsigned long trymap[4]);
-int					ft_state_bit(unsigned short map, unsigned char pos);
-int					ft_count_link(int map, int pos);
+int					ft_place(t_t *tetros, t_map trymap,
+		unsigned char size);
+char				ft_bitat(unsigned long map, unsigned char pos);
+char				ft_count_link(unsigned long map, int pos);
 int					ft_resolve(t_t *tetros, unsigned char size);
 void				ft_prtabt(unsigned long map);
+void				ft_prtest(t_map);
 
 #endif

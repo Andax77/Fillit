@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 15:14:17 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/29 14:25:08 by kdouveno         ###   ########.fr       */
+/*   Updated: 2017/11/30 14:04:07 by kdouveno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,6 @@ void	ft_prtabt(unsigned long map)
 	}
 }
 
-void	ft_find_dims(t_t *out)
-{
-int i;
-	unsigned long mask;
-
-	mask = 0xF0000;
-	i = 1;
-	while ((out->map & mask) != 0)
-	{
-		mask <<= 16;
-		i++;
-	}
-	out->dy = i;
-	if (i == 2 && ((out->map & 68) == 0))
-		out->dx = i;
-	else
-		out->dx = 5 - i;
-}
-
 t_t		ft_parseone(char *s)
 {
 	t_t				out;
@@ -57,22 +38,19 @@ t_t		ft_parseone(char *s)
 	unsigned long	mask;
 
 	i = 0;
-	out.map = 0;
+	ft_bzero(out.map, 32);
 	while (i < 21 && s[i])
 	{
 		if (s[i] == '#')
-			out.map = out.map | (1LU << (((unsigned long)i + 1LU) / 5LU
+			out.map[0] |= (1LU << (((unsigned long)i + 1LU) / 5LU
 				* 16LU + (unsigned long)i % 5LU));
 		i++;
 	}
 	mask = 0x1000100010001;
-	while (!(out.map & mask))
-		out.map = out.map >> 1;
-	while (!(out.map & 0xF))
-		out.map = out.map >> 16;
-	out.x = 0;
-	out.y = 0;
-	ft_find_dims(&out);
+	while (!(out.map[0] & mask))
+		out.map[0] >>= 1;
+	while (!(out.map[0] & 0xF))
+		out.map[0] >>= 16;
 	return (out);
 }
 
@@ -92,6 +70,6 @@ t_t		*ft_parse(char *s)
 		out[i].letter = i + 65;
 		i++;
 	}
-	out[i].map = 0;
+	out[i].letter = 0;
 	return (out);
 }
