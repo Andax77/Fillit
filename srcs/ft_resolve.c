@@ -1,55 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_resolve.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kdouveno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/01 15:40:43 by kdouveno          #+#    #+#             */
+/*   Updated: 2017/12/01 15:40:47 by kdouveno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../hds/main.h"
-#include <stdio.h>
 
-void ft_prtest(unsigned long map[4]) {
-	int i;
-
-	i = 0;
-	while (i < 4)
-	{
-		ft_prtabt(map[i]);
-		i++;
-	}
-	ft_putchar('\n');
-}
-
-void	ft_mapadd(t_map map, t_map mask)
-{
-	int i;
-
-	i = 0;
-	while (i < 3)
-	{
-		map[i] |= mask[i];
-		i++;
-	}
-}
-
-void	ft_mapdiff(t_map map, t_map mask)
-{
-	int i;
-
-	i = 0;
-	while (i < 3)
-	{
-		map[i] &= ~mask[i];
-		i++;
-	}
-}
-
-int		ft_collapse(t_map test, t_map try)
-{
-	int i;
-
-	i = 0;
-	while (!(test[i] & try[i]) && i < 4)
-		i++;
-	if (i == 4)
-		return (0);
-	return (1);
-}
-
-void ft_initmaps(t_map x, t_map y, unsigned char size)
+static void	ft_initmaps(t_map x, t_map y, unsigned char size)
 {
 	int i;
 
@@ -63,64 +26,51 @@ void ft_initmaps(t_map x, t_map y, unsigned char size)
 			y[i] = 0xFFFFUL << (size % 4 * 16);
 		i++;
 	}
-
 }
 
-void	ft_shiftx(t_map map, char shift)
+static int		ft_limx(int *x, int *y, t_t *tetro, t_map xlimit)
 {
-	int i;
-
-	i = 0;
-	if (shift < 0)
-		while (i < 4)
-			map[i++] >>= -shift;
-	else
-		while (i < 4)
-		 	map[i++] <<= shift;
-
+	if (ft_collapse(tetro->map, xlimit))
+	{
+		ft_shiftx(tetro->map, -(*x));
+		*x = 0;
+		ft_shifty(tetro->map, 1);
+		(*y)++;
+		return (1);
+	}
+	return (0);
 }
 
-void	ft_shifty(t_map map, char shift)
+static int		ft_over(int *x, t_t *tetro, t_map trymap)
 {
-	int i;
-	int y;
+	if (ft_collapse(tetro->map, trymap))
+	{
+		ft_shiftx(tetro->map, 1);
+		(*x)++;
+		return (1);
+	}
+	return (0);
+}
 
-	y = 0;
-	if (shift < 0)
-		while (y < -shift)
-		{
-			i = 0;
-			while (i < 4)
-			{
-				map[i] >>= 16;
-				if (i != 3)
-					map[i] |= (map[i + 1] & 0xFFFFUL) << 48;
-				i++;
-			}
-			y++;
-		}
-	else
-		while (y < shift)
-		{
-			i = 3;
-			while (i >= 0)
-			{
-				map[i] <<= 16;
-				if (i != 0)
-					map[i] |= (map[i - 1] & 0xFFFF000000000000UL) >> 48;
-				i--;
-			}
-			y++;
-		}
+static int		ft_bckt(t_t *tetros, int *x, unsigned char size, t_map trymap)
+{
+	if (ft_resolve(tetros + 1, size))
+	{
+		ft_mapdiff(trymap, tetros->map);
+		ft_shiftx(tetros->map, 1);
+		(*x)++;
+		return (1);
+	}
+	return (0);
 }
 
 int		ft_resolve(t_t *tetros,  unsigned char size)
 {
-	static t_map trymap;
-	t_map xlimit;
-	t_map ylimit;
-	int x;
-	int y;
+	static	t_map trymap;
+	t_map	xlimit;
+	t_map	ylimit;
+	int		x;
+	int		y;
 
 	if (!tetros->letter)
 		return (0);
@@ -129,30 +79,14 @@ int		ft_resolve(t_t *tetros,  unsigned char size)
 	ft_initmaps(xlimit, ylimit, size);
 	while (!ft_collapse(tetros->map, ylimit))
 	{
-		if (ft_collapse(tetros->map, xlimit))
-		{
-			ft_shiftx(tetros->map, -x);
-			x = 0;
-			ft_shifty(tetros->map, 1);
-			y++;
-			continue ;
-		}
-		if (ft_collapse(tetros->map, trymap))
-		{
-			ft_shiftx(tetros->map, 1);
-			x++;
-			continue ;
-		}
+		if (ft_limx(&x, &y, tetros, xlimit))
+			continue;
+		if (ft_over(&x, tetros, trymap))
+			continue;
 		ft_mapadd(trymap, tetros->map);
-		if (ft_resolve(tetros + 1, size))
-		{
-			ft_mapdiff(trymap, tetros->map);
-			ft_shiftx(tetros->map, 1);
-			x++;
-		}
-		else
+		if (!ft_bckt(tetros, &x, size, trymap))
 			return (0);
 	}
-	ft_shifty(tetros->map, -y);
+	ft_shifty_rev(tetros->map, y);
 	return (1);
 }

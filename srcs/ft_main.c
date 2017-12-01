@@ -1,13 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: kdouveno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 12:23:05 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/30 14:14:22 by kdouveno         ###   ########.fr       */
-/*   Updated: 2017/11/27 16:09:03 by anhuang          ###   ########.fr       */
+/*   Created: 2017/12/01 16:00:13 by kdouveno          #+#    #+#             */
+/*   Updated: 2017/12/01 16:00:16 by kdouveno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +25,13 @@ unsigned char	ft_start_size(t_t *tetros)
 	return (i);
 }
 
-int		ft_fillit(int argc, char **argv)
+int				ft_fillit(int argc, char **argv)
 {
-	char	*buf;
-	t_t		*tetros;
-	t_t		*out;
-	int		i;
-	unsigned char size;
+	char			*buf;
+	t_t				*tetros;
+	t_t				*out;
+	int				i;
+	unsigned char	size;
 
 	if (!(buf = ft_fibuf(argv[1], ft_filesize(ft_opfiro(argv[1])))))
 		return (1);
@@ -49,7 +48,7 @@ int		ft_fillit(int argc, char **argv)
 	return (0);
 }
 
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	if (argc != 2)
 	{

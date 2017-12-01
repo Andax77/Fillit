@@ -7,7 +7,9 @@ SRCFILES = ft_check.c\
     ft_read.c\
     ft_resolve.c\
     ft_state_bit.c\
-    ft_validate.c
+    ft_validate.c\
+	ft_map_shifts.c\
+	ft_map_operators.c
 
 SRCDIR = srcs/
 HDDIR = hds/

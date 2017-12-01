@@ -12,25 +12,6 @@
 
 #include "../hds/main.h"
 
-char	ft_bitat(unsigned long src, unsigned char pos)
-{
-	return (src >> pos & 1);
-}
-
-void	ft_prtabt(unsigned long map)
-{
-	int i;
-
-	i = 0;
-	while (i < 64)
-	{
-		if (i % 16 == 0)
-			ft_putchar('\n');
-		ft_putchar(ft_bitat(map, i) + 48);
-		i++;
-	}
-}
-
 t_t		ft_parseone(char *s)
 {
 	t_t				out;
