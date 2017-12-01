@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "libft.h"
-# include <stdio.h>
 # define ULLLINE 0xFFFF000000000000UL
 
 typedef	unsigned long	t_map[4];
@@ -52,4 +51,5 @@ void					ft_shifty_rev(t_map map, char shift);
 void					ft_prtabt(unsigned long map);
 void					ft_prtest(t_map map);
 
+char					*ft_display(t_t *input, unsigned char size);
 #endif

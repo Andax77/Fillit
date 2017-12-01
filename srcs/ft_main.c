@@ -6,7 +6,7 @@
 /*   By: kdouveno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:00:13 by kdouveno          #+#    #+#             */
-/*   Updated: 2017/12/01 16:00:16 by kdouveno         ###   ########.fr       */
+/*   Updated: 2017/12/01 16:26:13 by kdouveno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int				ft_fillit(int argc, char **argv)
 {
 	char			*buf;
 	t_t				*tetros;
-	t_t				*out;
 	int				i;
 	unsigned char	size;
 
@@ -39,12 +38,16 @@ int				ft_fillit(int argc, char **argv)
 		return (1);
 	if (!(tetros = ft_parse(buf)))
 		return (1);
+	free(buf);
 	if (ft_validate(tetros))
 		return (1);
 	size = ft_sqrt(4 * ft_start_size(tetros));
 	while (ft_resolve(tetros, size))
 		size++;
-	printf("megafin\n");
+	if (!(buf = ft_display(tetros, size)))
+		return (1);
+	free(buf);
+	free(tetros);
 	return (0);
 }
 

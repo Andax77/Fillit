@@ -6,7 +6,7 @@
 /*   By: kdouveno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 15:40:43 by kdouveno          #+#    #+#             */
-/*   Updated: 2017/12/01 15:40:47 by kdouveno         ###   ########.fr       */
+/*   Updated: 2017/12/01 16:37:22 by kdouveno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	ft_initmaps(t_map x, t_map y, unsigned char size)
 	}
 }
 
-static int		ft_limx(int *x, int *y, t_t *tetro, t_map xlimit)
+static int	ft_limx(int *x, int *y, t_t *tetro, t_map xlimit)
 {
 	if (ft_collapse(tetro->map, xlimit))
 	{
@@ -41,7 +41,7 @@ static int		ft_limx(int *x, int *y, t_t *tetro, t_map xlimit)
 	return (0);
 }
 
-static int		ft_over(int *x, t_t *tetro, t_map trymap)
+static int	ft_over(int *x, t_t *tetro, t_map trymap)
 {
 	if (ft_collapse(tetro->map, trymap))
 	{
@@ -52,7 +52,7 @@ static int		ft_over(int *x, t_t *tetro, t_map trymap)
 	return (0);
 }
 
-static int		ft_bckt(t_t *tetros, int *x, unsigned char size, t_map trymap)
+static int	ft_bckt(t_t *tetros, int *x, unsigned char size, t_map trymap)
 {
 	if (ft_resolve(tetros + 1, size))
 	{
@@ -64,13 +64,13 @@ static int		ft_bckt(t_t *tetros, int *x, unsigned char size, t_map trymap)
 	return (0);
 }
 
-int		ft_resolve(t_t *tetros,  unsigned char size)
+int			ft_resolve(t_t *tetros, unsigned char size)
 {
-	static	t_map trymap;
-	t_map	xlimit;
-	t_map	ylimit;
-	int		x;
-	int		y;
+	static t_map	trymap;
+	t_map			xlimit;
+	t_map			ylimit;
+	int				x;
+	int				y;
 
 	if (!tetros->letter)
 		return (0);

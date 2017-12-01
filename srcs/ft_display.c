@@ -13,18 +13,6 @@
 #include "../hds/main.h"
 #include "../hds/libft.h"
 
-void			ft_putstr(char const *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
-}
-
 static char		*ft_display_t(char *out, int x, unsigned char size, t_t *input)
 {
 	int				bit;
