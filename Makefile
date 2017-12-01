@@ -26,11 +26,12 @@ MAGENTA = \x1b[35m
 CYAN = \x1b[36m
 WHITE = \x1b[37m
 BGWHITE = \x1b[47m
+FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME): o
-	@gcc $(OBJS) $(LIBS) -o $(NAME)
+	@gcc $(FLAGS) $(OBJS) $(LIBS) -o $(NAME)
 	@make line
 	@echo "$(YELLOW)    .o and executable created    $(WHITE)"
 	@make line
