@@ -114,33 +114,6 @@ void	ft_shifty(t_map map, char shift)
 		}
 }
 
-int		ft_place(t_t *tetros, unsigned char size, int *x, int *y)
-{
-	if (ft_collapse(tetros->map, xlimit))
-	{
-		ft_shiftx(tetros->map, -(*x));
-		*x = 0;
-		ft_shifty(tetros->map, 1);
-		continue ;
-	}
-	if (ft_collapse(tetros->map, trymap))
-	{
-		ft_shiftx(tetros->map, 1);
-		(*x)++;
-		continue ;
-	}
-	ft_mapadd(trymap, tetros->map);
-	if (ft_resolve(tetros + 1, size))
-	{
-		ft_mapdiff(trymap, tetros->map);
-		ft_shiftx(tetros->map, 1);
-		(*x)++;
-	}
-	else
-		return (0);
-	(*y)++;
-}
-
 int		ft_resolve(t_t *tetros,  unsigned char size)
 {
 	static t_map trymap;
@@ -156,10 +129,29 @@ int		ft_resolve(t_t *tetros,  unsigned char size)
 	ft_initmaps(xlimit, ylimit, size);
 	while (!ft_collapse(tetros->map, ylimit))
 	{
-		if (!ft_place(tetros, size, &x, &y)){
-			ft_prtest(trymap);
-			return (0);
+		if (ft_collapse(tetros->map, xlimit))
+		{
+			ft_shiftx(tetros->map, -x);
+			x = 0;
+			ft_shifty(tetros->map, 1);
+			continue ;
 		}
+		if (ft_collapse(tetros->map, trymap))
+		{
+			ft_shiftx(tetros->map, 1);
+			x++;
+			continue ;
+		}
+		ft_mapadd(trymap, tetros->map);
+		if (ft_resolve(tetros + 1, size))
+		{
+			ft_mapdiff(trymap, tetros->map);
+			ft_shiftx(tetros->map, 1);
+			x++;
+		}
+		else
+			return (0);
+		y++;
 	}
 	ft_shifty(tetros->map, -y);
 	return (1);
