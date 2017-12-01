@@ -134,6 +134,7 @@ int		ft_resolve(t_t *tetros,  unsigned char size)
 			ft_shiftx(tetros->map, -x);
 			x = 0;
 			ft_shifty(tetros->map, 1);
+			y++;
 			continue ;
 		}
 		if (ft_collapse(tetros->map, trymap))
@@ -151,7 +152,6 @@ int		ft_resolve(t_t *tetros,  unsigned char size)
 		}
 		else
 			return (0);
-		y++;
 	}
 	ft_shifty(tetros->map, -y);
 	return (1);
