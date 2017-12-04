@@ -6,12 +6,26 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:22:46 by anhuang           #+#    #+#             */
-/*   Updated: 2017/12/04 11:56:01 by anhuang          ###   ########.fr       */
+/*   Updated: 2017/12/04 12:25:24 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "libft.h"
+
+static void		ft_endline(int *a, unsigned char size, int *d, unsigned char *i)
+{
+	(*a) += 16 - size;
+	(*d)++;
+	(*i)++;
+}
+
+static void		ft_endul(int *man, int *dif, int *a)
+{
+	(*man)++;
+	(*a) = 0;
+	(*dif) = 0;
+}
 
 static char		*ft_display_t(char *out, int a, unsigned char size, t_t *input)
 {
@@ -27,17 +41,9 @@ static char		*ft_display_t(char *out, int a, unsigned char size, t_t *input)
 	while (bit != 4 && (++a + 1) && (++i + 1))
 	{
 		if (out[i] == '\n')
-		{
-			a += 16 - size;
-			dif++;
-			i++;
-		}
+			ft_endline(&a, size, &dif, &i);
 		if (dif == 4)
-		{
-			man++;
-			a = 0;
-			dif = 0;
-		}
+			ft_endul(&man, &dif, &a);
 		if (ft_bitat(input->map[man], a) == 1)
 		{
 			out[i] = input->letter;
