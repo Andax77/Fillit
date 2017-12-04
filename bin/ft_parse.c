@@ -6,13 +6,13 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 15:14:17 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/30 14:04:07 by kdouveno         ###   ########.fr       */
+/*   Updated: 2017/12/04 16:50:06 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-t_t		ft_parseone(char *s)
+static t_t		ft_parseone(char *s)
 {
 	t_t				out;
 	int				i;
@@ -35,7 +35,7 @@ t_t		ft_parseone(char *s)
 	return (out);
 }
 
-t_t		*ft_parse(char *s)
+t_t				*ft_parse(char *s)
 {
 	int		t_count;
 	int		i;

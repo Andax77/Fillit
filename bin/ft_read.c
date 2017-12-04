@@ -6,17 +6,11 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:20:54 by anhuang           #+#    #+#             */
-/*   Updated: 2017/12/04 11:55:53 by kdouveno         ###   ########.fr       */
+/*   Updated: 2017/12/04 17:32:19 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include <stdio.h>
-
-int				ft_opfiro(char *path)
-{
-	return (open(path, O_RDONLY));
-}
 
 unsigned int	ft_filesize(int fd)
 {
@@ -37,8 +31,8 @@ char			*ft_fibuf(char *path, unsigned int size)
 	char	*out;
 	int		fd;
 
-	fd = ft_opfiro(path);
-	if (!fd || !size)
+	fd = open(path, O_RDONLY);
+	if (!fd)
 		return (NULL);
 	if (!(out = (char*)malloc(size + 1)))
 		return (NULL);

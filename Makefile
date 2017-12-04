@@ -72,7 +72,7 @@ test:
 	@make line
 
 gene:
-	@sh gene.sh 12
+	@sh gene.sh 7
 
 cat:
 	@make line
