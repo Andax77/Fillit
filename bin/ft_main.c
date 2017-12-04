@@ -6,7 +6,7 @@
 /*   By: kdouveno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:00:13 by kdouveno          #+#    #+#             */
-/*   Updated: 2017/12/01 16:26:13 by kdouveno         ###   ########.fr       */
+/*   Updated: 2017/12/04 11:55:06 by kdouveno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ unsigned char	ft_start_size(t_t *tetros)
 	return (i);
 }
 
-int				ft_fillit(int argc, char **argv)
+int				ft_fillit(char **argv)
 {
 	char			*buf;
 	t_t				*tetros;
-	int				i;
 	unsigned char	size;
 
 	if (!(buf = ft_fibuf(argv[1], ft_filesize(ft_opfiro(argv[1])))))
@@ -58,7 +57,7 @@ int				main(int argc, char **argv)
 		ft_putstr_fd("usage: fillit input_file\n", 2);
 		return (0);
 	}
-	if (ft_fillit(argc, argv))
+	if (ft_fillit(argv))
 	{
 		ft_putstr_fd("error", 2);
 		return (0);

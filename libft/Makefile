@@ -12,6 +12,8 @@
 
 NAME = libft.a
 
+FLAGS = -Wall -Wextra -Werror
+
 SRCS = ft_atoi.c\
   ft_bzero.c\
   ft_isalnum.c\
@@ -79,15 +81,17 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME):
-	gcc -Wall -Wextra -Werror -c $(SRCS)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+$(NAME): $(OBJS)
+	@ar rc $@ $^
+	@ranlib $@
+
+%.o: %.c
+	@gcc $(FLAGS) -c $^
 
 clean:
-	rm -rf $(OBJS)
+	@rm -rf $(OBJS)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all

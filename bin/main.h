@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:02:22 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/30 14:20:09 by kdouveno         ###   ########.fr       */
+/*   Updated: 2017/12/04 11:54:51 by kdouveno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char					*ft_fibuf(char *path, unsigned int size);
 char					*ft_read(int fd);
 int						ft_validate(t_t *tetros);
 t_t						ft_strtot(char *s);
-int						ft_fillit(int argc, char **argv);
+int						ft_fillit(char **argv);
 t_t						*ft_parse(char *s);
 
 char					ft_count_link(unsigned long map, int pos);

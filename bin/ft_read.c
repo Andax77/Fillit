@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:20:54 by anhuang           #+#    #+#             */
-/*   Updated: 2017/11/23 15:28:16 by anhuang          ###   ########.fr       */
+/*   Updated: 2017/12/04 11:55:53 by kdouveno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ unsigned int	ft_filesize(int fd)
 	int		ret;
 	char	buf[1];
 
+	i = 0;
 	if (!fd)
 		return (0);
 	while ((ret = read(fd, buf, 1)))

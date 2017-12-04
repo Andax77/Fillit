@@ -1,5 +1,7 @@
 NAME = fillit
 
+CC = gcc
+
 SRCFILES = ft_check.c\
     ft_count_link.c\
     ft_main.c\
@@ -12,13 +14,10 @@ SRCFILES = ft_check.c\
 	ft_display.c\
 
 SRCDIR = bin/
-HDDIR = bin/
 
 OBJS = $(SRCFILES:.c=.o)
-SRCS = $(addprefix $(SRCDIR), $(SRCFILES))
 
-LIBS = ft
-LIBSDIR = libft
+LIB = libft/libft.a
 
 RED = \x1b[31m
 GREEN = \x1b[32m
@@ -30,38 +29,24 @@ FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): o
-	@gcc $(FLAGS) $(OBJS) -L$(LIBSDIR) -l$(LIBS) -o $(NAME)
-	@make line
-	@echo "$(YELLOW)    .o and executable created    $(WHITE)"
-	@make line
+$(NAME): $(OBJS) $(LIB)
+	@$(CC) $(FLAGS) -o $@ $?
+	@echo "$(YELLOW)"
+	@echo "sauce"
+
+%.o: $(SRCDIR)%.c
+	@gcc $(FLAGS) -c $?
+
+$(LIB):
+	@cd libft; make; make clean; cd ..
 
 clean:
 	@rm -rf $(OBJS)
-	@echo "$(GREEN)[----------------]"
-	@echo "[$(YELLOW)     all .o     $(GREEN)]"
-	@echo "[$(YELLOW)    has been    $(GREEN)]"
-	@echo "[$(YELLOW)    Cleaned     $(GREEN)]"
-	@echo "[----------------]$(WHITE)"
 
 fclean: clean
 	@rm -rf $(NAME)
-	@echo "$(GREEN)[----------------]"
-	@echo "[$(YELLOW)  Successfully  $(GREEN)]"
-	@echo "[$(YELLOW)    cleared     $(GREEN)]"
-	@echo "[$(YELLOW)   executable   $(GREEN)]"
-	@echo "[----------------]$(WHITE)"
 
-re: fclean
-	@make
-	@echo "$(GREEN)[----------------]"
-	@echo "[$(YELLOW)     Remake     $(GREEN)]"
-	@echo "[$(YELLOW)      made      $(GREEN)]"
-	@echo "[$(YELLOW)  Successfully  $(GREEN)]"
-	@echo "$(GREEN)[----------------]$(WHITE)"
-
-o:
-	@gcc -c $(SRCS)
+re: clean make
 
 line:
 	@echo "$(MAGENTA)---------------------------------$(WHITE)"
@@ -84,7 +69,7 @@ gene:
 
 cat:
 	@make line
-	@echo "$(YELLOW)  Here is the tetriminos tested  $(WHITE)"
+	@echo "$(YELLOW)  Here are the tetriminos tested  $(WHITE)"
 	@make line
 	@sh replace.sh
 	@make line
