@@ -6,27 +6,25 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:22:46 by anhuang           #+#    #+#             */
-/*   Updated: 2017/12/01 16:09:06 by anhuang          ###   ########.fr       */
+/*   Updated: 2017/12/04 11:56:01 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "libft.h"
 
-static char		*ft_display_t(char *out, int x, unsigned char size, t_t *input)
+static char		*ft_display_t(char *out, int a, unsigned char size, t_t *input)
 {
 	int				bit;
 	int				dif;
 	unsigned char	i;
 	int				man;
-	int				a;
 
-	a = 0;
 	man = 0;
-	i = 0;
+	i = -1;
 	dif = 0;
 	bit = 0;
-	while (bit != 4)
+	while (bit != 4 && (++a + 1) && (++i + 1))
 	{
 		if (out[i] == '\n')
 		{
@@ -45,8 +43,6 @@ static char		*ft_display_t(char *out, int x, unsigned char size, t_t *input)
 			out[i] = input->letter;
 			bit++;
 		}
-		a++;
-		i++;
 	}
 	return (out);
 }
@@ -55,7 +51,6 @@ char			*ft_display(t_t *input, unsigned char size)
 {
 	char	*out;
 	int		i;
-	int		x;
 
 	i = 0;
 	if (!(out = (char*)malloc((size * size + size))))
@@ -70,7 +65,7 @@ char			*ft_display(t_t *input, unsigned char size)
 	out[i] = '\0';
 	while (input->letter != 0)
 	{
-		ft_display_t(out, 0, size, input);
+		ft_display_t(out, -1, size, input);
 		input++;
 	}
 	ft_putstr(out);
