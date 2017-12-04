@@ -54,12 +54,12 @@ int				main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		ft_putstr_fd("usage: fillit input_file\n", 2);
+		ft_putstr_fd("usage: fillit input_file\n", 1);
 		return (0);
 	}
 	if (ft_fillit(argv))
 	{
-		ft_putstr_fd("error", 2);
+		ft_putstr_fd("error", 1);
 		return (0);
 	}
 	return (0);

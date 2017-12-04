@@ -17,7 +17,10 @@ SRCDIR = bin/
 
 OBJS = $(SRCFILES:.c=.o)
 
-LIB = libft/libft.a
+LIBDIR = libft/
+LIB = libft.a
+LIBSRCS = $(wildcard $(LIBDIR)*.c)
+LIBOBJS = $(lib:.c=.o)
 
 RED = \x1b[31m
 GREEN = \x1b[32m
@@ -29,24 +32,28 @@ FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIB)
-	@$(CC) $(FLAGS) -o $@ $?
-	@echo "$(YELLOW)"
-	@echo "sauce"
+$(NAME): $(LIB) $(OBJS)
+	@echo creation du fillit
+	@$(CC) $(FLAGS) -o $@ $^
 
 %.o: $(SRCDIR)%.c
-	@gcc $(FLAGS) -c $?
+	@echo creation des .o
+	@gcc $(FLAGS) -c $^
 
 $(LIB):
-	@cd libft; make; make clean; cd ..
+	@echo creatin du libft.a
+	@cd $(LIBDIR); make; mv $(LIB) ..; mv *.o ..; cd ..
 
 clean:
-	@rm -rf $(OBJS)
+	@rm -rf *.o
+	@cd $(LIBDIR); make clean; cd ..
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -rf $(LIB)
+	@cd $(LIBDIR); make fclean; cd ..
 
-re: clean make
+re: fclean all
 
 line:
 	@echo "$(MAGENTA)---------------------------------$(WHITE)"
@@ -65,7 +72,7 @@ test:
 	@make line
 
 gene:
-	@sh gene.sh 10
+	@sh gene.sh 12
 
 cat:
 	@make line

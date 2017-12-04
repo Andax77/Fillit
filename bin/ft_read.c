@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "main.h"
+#include <stdio.h>
 
 int				ft_opfiro(char *path)
 {
@@ -37,7 +38,7 @@ char			*ft_fibuf(char *path, unsigned int size)
 	int		fd;
 
 	fd = ft_opfiro(path);
-	if (!fd)
+	if (!fd || !size)
 		return (NULL);
 	if (!(out = (char*)malloc(size + 1)))
 		return (NULL);

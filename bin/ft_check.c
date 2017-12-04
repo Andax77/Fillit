@@ -20,13 +20,13 @@ static int		ft_checkchar(char *c, int *i, char *t_count, char *hashs)
 	{
 		if (c[*i] != '\n')
 			return (1);
-		else if ((c[*i + 1] == '\n' && (*i + 2) % 21 == 0) || !(c[*i + 2]))
+		else if ((c[*i + 1] == '\n' && (*i + 2) % 21 == 0) || !(c[*i + 1]))
 		{
 			if (*hashs != 4)
 				return (1);
 			*hashs = 0;
 			(*t_count)++;
-			(*i)++;
+			*i += c[*i + 1] ? 1 : 0;
 		}
 	}
 	else
